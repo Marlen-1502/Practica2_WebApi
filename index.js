@@ -14,6 +14,10 @@ app.use(bodyParser.json())
 
 
 app.get('/api/product',(req,res) =>{
+  console.log('Get /api/product')
+  console.log(req.body)
+  if(err) return res.status(500).send({message: `Error al realizar la petición ${err}`})
+ if(!product) return res.status(404).send({message: `No existen registros de productos`})
   res.send(200, {product: []})
  })
  
