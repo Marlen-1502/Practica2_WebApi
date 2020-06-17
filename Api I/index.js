@@ -7,21 +7,22 @@ const bodyParser = require('body-parser')
 const Product = require('./models/Product.js')
 
 const app = express()
-const port = process.env.PORT || 3003
+const port = process.env.PORT || 3004
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
+app.set('json spaces', 2)
+
 
 app.get('/api/product',(req,res) =>{
-  console.log('Get /api/product')
-  console.log(req.body)
-  if(err) return res.status(500).send({message: `Error al realizar la petición ${err}`})
- if(!product) return res.status(404).send({message: `No existen registros de productos`})
-  res.send(200, {product: []})
- })
- 
+    const k = Product.find({}, (err, interrupt) => {
+      if(err) throw (err);
 
+      res.json({ interrupt });
+      });
+ });
+ 
 
 app.post('/api/product', (req, res)  =>{
 console.log('Post /api/product')
